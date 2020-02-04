@@ -4,11 +4,12 @@
   "description": "a project to showcase workflows",
   "repository": {
     "type": "git",
-    "url": "?.git"
+    "url": "https://github.com/mnus2019/workflow.git"
   },
   "author": "ray villalobas",
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-coffee": "^3.0.3",
     "gulp-util": "^3.0.8"
   }
 }
