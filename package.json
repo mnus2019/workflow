@@ -11,9 +11,14 @@
     "gulp": "^4.0.2",
     "gulp-browserify": "^0.5.1",
     "gulp-coffee": "^3.0.3",
+    "gulp-compass": "^2.1.0",
     "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.7.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-util": "^3.0.8",
     "jquery": "^3.4.1",
-    "mustache": "^4.0.0"
+    "mustache": "^4.0.0",
+    "ruby": "^0.6.1"
   }
 }

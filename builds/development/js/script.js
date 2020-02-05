@@ -77,7 +77,7 @@ $ = require('jquery');
 
 (fill = function(item) {
   return $('.tagline').append(`${item}`);
-})('The most creative minds in Art');
+})('The most  Creative minds in Art');
 
 fill;
 
@@ -86,7 +86,7 @@ $(function() {
   
     $.getJSON('js/data.json', function(data) {
       var template = $('#speakerstpl').html();
-      var html = Mustache.to_html(template, data);
+      var html = Mustache.render(template, data);
       $('#speakers').html(html);    
     }); //getJSON
     
