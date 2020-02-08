@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://github.com/mnus2019/workflow.git"
   },
+  "scripts": {
+    "start": "set NODE_ENV=production && node app.js"
+   },
   "author": "ray villalobas",
   "devDependencies": {
     "gulp": "^4.0.2",
@@ -14,8 +17,11 @@
     "gulp-compass": "^2.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.7.0",
+    "gulp-if": "^3.0.0",
+    "gulp-minify-html": "^1.0.6",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
     "jquery": "^3.4.1",
     "mustache": "^4.0.0",
