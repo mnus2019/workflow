@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "set NODE_ENV=production && node app.js"
-   },
+  },
   "author": "ray villalobas",
   "devDependencies": {
     "gulp": "^4.0.2",
@@ -21,7 +21,9 @@
     "gulp-minify-html": "^1.0.6",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser": "^1.2.0",
     "gulp-uglify": "^3.0.2",
+    "gulp-uglify-es": "^2.0.0",
     "gulp-util": "^3.0.8",
     "jquery": "^3.4.1",
     "mustache": "^4.0.0",

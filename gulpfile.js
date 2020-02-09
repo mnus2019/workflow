@@ -6,24 +6,26 @@ var gulp = require('gulp'),
     sourcemaps = require("gulp-sourcemaps"),
     connect = require('gulp-connect'),
     gulpif = require('gulp-if'),
-    uglify = require('gulp-uglify'),
+     terser = require('gulp-terser'),
+     minifyHTML = require('gulp-minify-html'),
+    uglify = require('gulp-uglify-es'),
     concat = require('gulp-concat');
 
     var env,coffeeSources,jsSources,sassSources,
-    htmlSources,jsonSources,outputDir;
+    htmlSources,jsonSources,outputDir,SassStyle;
     
     
    env=process.env.NODE_ENV;
-   env='production';
+//    env='production';
     gulp.task('launcher', function(cb){
         switch (env){
           case 'production':
             outputDir='builds/production';
-            // SassStyle='compressed';
+            SassStyle='compressed';
             break;
           default :
             outputDir='builds/development';
-            // SassStyle='expanded';
+            SassStyle='expanded';
             break;
         }
         cb();
@@ -56,7 +58,8 @@ gulp.task('js' ,function(cb){
     gulp.src(jsSources)
     .pipe(concat('script.js'))
     .pipe(browserify())
-    
+    .pipe(gulpif(env==="production",terser()))
+    .pipe(gulpif(env==="production",gulp.dest('builds/production/js')))
     .pipe(gulp.dest(outputDir + '/js'))
     .pipe(connect.reload())
     cb();
@@ -82,7 +85,7 @@ gulp.task('sass' ,function(cb){
       .pipe(sourcemaps.init())
       .pipe(sass({
           sourcemap: true,
-          style: 'expanded'
+          style: SassStyle
         }).on("error", sass.logError)
       )
       .pipe(gulp.dest(outputDir +'/css'))
@@ -108,19 +111,18 @@ gulp.task('connect',function(cb){
 });
 gulp.task('html',function(cb){
     gulp.src(htmlSources)
-    .pipe(connect.reload())
-    .pipe(gulp.dest(outputDir + '/js'))
-    
+    .pipe(gulpif(env==="production",minifyHTML()))
+    .pipe(gulpif(env==="production",gulp.dest(outputDir +'/'+ '/js')))
+    .pipe(connect.reload())    
     cb();
 });
 gulp.task('json',function(cb){
-    gulp.src(jsonSources)
+    gulp.src(jsonSources) 
     .pipe(connect.reload())
-    .pipe(gulp.dest( 'builds/production/js'))
+   cb();   
     
-    cb();
 })
 
- gulp.task('default' ,gulp.series( 'launcher','coffee','json' ,'html', 'js' , 'sass', 'watch', 'connect' ));
+ gulp.task('default' ,gulp.series( 'launcher','json','coffee','json' ,'html', 'js' , 'sass', 'watch', 'connect' ));
 
 
