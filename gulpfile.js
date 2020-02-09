@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     gulpif = require('gulp-if'),
      terser = require('gulp-terser'),
      minifyHTML = require('gulp-minify-html'),
+     jsonminify = require('gulp-jsonminify'),
     uglify = require('gulp-uglify-es'),
     concat = require('gulp-concat');
 
@@ -16,7 +17,7 @@ var gulp = require('gulp'),
     
     
    env=process.env.NODE_ENV;
-//    env='production';
+   env='production';
     gulp.task('launcher', function(cb){
         switch (env){
           case 'production':
@@ -118,6 +119,8 @@ gulp.task('html',function(cb){
 });
 gulp.task('json',function(cb){
     gulp.src(jsonSources) 
+    .pipe(jsonminify())
+    .pipe(gulp.dest(outputDir +'/'+ '/js'))
     .pipe(connect.reload())
    cb();   
     
